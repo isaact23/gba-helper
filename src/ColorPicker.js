@@ -11,15 +11,24 @@ class ColorPicker extends React.Component {
     // Initialize ColorPicker with a default color.
     constructor(props) {
         super(props);
+        let initialColor = "#3260ab";
+
         this.state = {
-           color: "#fff"
+            color: initialColor,
+            binary: this.hexToBin(initialColor)
         };
+    }
+
+    // Convert a hexadecimal
+    hexToBin(color) {
+        return "0 11111 11111 11111";
     }
 
     // Handle a change in the color picker.
     handleChangeComplete = (color) => {
         this.setState({
-            color: color
+            color: color,
+            binary: this.hexToBin(color)
         });
     }
 
@@ -30,14 +39,15 @@ class ColorPicker extends React.Component {
                     <h2>Color Picker</h2>
                     <SketchPicker
                         width={400}
+                        disableAlpha={true}
                         color={this.state.color}
                         onChangeComplete={this.handleChangeComplete}
                     />
                 </div>
                 <div className="ColorPicker-output">
                     <h2>GBA Color Representation</h2>
-                    <p>Binary:</p>
-                    <p>Hex:</p>
+                    <p>Binary: {this.state.binary}</p>
+                    <p>Hex: {this.state.color}</p>
                 </div>
             </div>
         );

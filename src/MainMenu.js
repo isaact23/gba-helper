@@ -1,4 +1,3 @@
-
 export default function MainMenu() {
     return (
         <div className="Main-menu">

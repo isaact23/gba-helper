@@ -1,5 +1,7 @@
 export default function ColorPicker() {
     return (
-        <h1>Color Picker</h1>
+        <div className="ColorPicker">
+            <h2>Color Picker</h2>
+        </div>
     );
 }

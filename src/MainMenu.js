@@ -3,13 +3,14 @@ import {Link} from "react-router-dom";
 export default function MainMenu() {
     return (
         <div className="MainMenu">
-            <h1>Main Menu</h1>
-            <Link to="color"><p>PNG to GBA converter</p></Link>
-            <p>RGBA color picker</p>
-            <p>Tilemap Editor</p>
-            <p>Useful links</p>
-            <p>About</p>
-            <p>Donate</p>
+            <h2>Main Menu</h2>
+            <Link to="color"><ul>PNG to GBA converter</ul></Link>
+            <ul>RGBA color picker</ul>
+            <ul>Tilemap Editor</ul>
+            <ul>Useful links</ul>
+            <ul>About</ul>
+            <ul>Donate</ul>
+            <ul>GitHub Repo</ul>
         </div>
     );
 }

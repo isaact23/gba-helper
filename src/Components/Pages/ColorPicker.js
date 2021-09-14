@@ -11,24 +11,35 @@ class ColorPicker extends React.Component {
     // Initialize ColorPicker with a default color.
     constructor(props) {
         super(props);
-        let initialColor = "#3260ab";
+        let initialColor = {r: 40, g: 120, b: 220};
 
         this.state = {
-            color: initialColor,
-            binary: this.hexToBin(initialColor)
+            colorRgb: initialColor,
+            colorBin: this.rgbToBin(initialColor)
         };
     }
 
-    // Convert a hexadecimal
-    hexToBin(color) {
-        return "0 11111 11111 11111";
+    // Convert an RGB color to binary
+    rgbToBin(color) {
+        return "0 " +
+            this.numToBin(color.b >> 3) + " " +
+            this.numToBin(color.g >> 3) + " " +
+            this.numToBin(color.r >> 3);
+    }
+    // Convert a single number to binary (0 to 31 range)
+    numToBin(num) {
+        return ((num >> 4) % 2).toString() +
+            ((num >> 3) % 2).toString() +
+            ((num >> 2) % 2).toString() +
+            ((num >> 1) % 2).toString() +
+            (num % 2).toString()
     }
 
     // Handle a change in the color picker.
     handleChangeComplete = (color) => {
         this.setState({
-            color: color,
-            binary: this.hexToBin(color)
+            colorRgb: color.rgb,
+            colorBin: this.rgbToBin(color.rgb)
         });
     }
 
@@ -40,14 +51,13 @@ class ColorPicker extends React.Component {
                     <SketchPicker
                         width={400}
                         disableAlpha={true}
-                        color={this.state.color}
+                        color={this.state.colorRgb}
                         onChangeComplete={this.handleChangeComplete}
                     />
                 </div>
                 <div className="ColorPicker-output">
                     <h2>GBA Color Representation</h2>
-                    <p>Binary: {this.state.binary}</p>
-                    <p>Hex: {this.state.color}</p>
+                    <p>Binary: {this.state.colorBin}</p>
                 </div>
             </div>
         );

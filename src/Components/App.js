@@ -1,10 +1,10 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.scss';
 
-import NavBar from './NavBar.js';
-import MainMenu from './MainMenu.js';
-import ColorPicker from './ColorPicker.js';
+import NavBar from './Pages/NavBar.js';
+import MainMenu from './Pages/MainMenu.js';
+import ColorPicker from './Pages/ColorPicker.js';
 
 /*
 The App component contains the entire website.

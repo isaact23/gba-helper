@@ -1,0 +1,24 @@
+$text: white;
+$background1: #282c34;
+$background2: #1f2126;
+
+.App {
+  text-align: left;
+  height: 100vh;
+  background-color: $background1;
+}
+.App-header {
+  background-color: $background2;
+  height: 20vh;
+  display: flex;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+}
+.App-header-title {
+  margin-left: 10vh;
+  color: $text;
+}
+
+.MainMenu {
+  color: $text;
+}

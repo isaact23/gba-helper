@@ -1,25 +1,24 @@
-import {Route, Switch} from "react-router";
-import './App.css';
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import './App.scss';
 
+import NavBar from './NavBar.js';
 import MainMenu from './MainMenu.js';
 import ColorPicker from './ColorPicker.js';
 
 export default function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <div className="App-header-title">
-                    <h1>GBA Helper</h1>
-                </div>
-            </header>
-            <Switch>
-                <Route exact path="/">
-                    <MainMenu/>
-                </Route>
-                <Route path="colors">
-                    <ColorPicker/>
-                </Route>
-            </Switch>
+            <Router>
+                <NavBar/>
+                <Switch>
+                    <Route exact path="/">
+                        <MainMenu/>
+                    </Route>
+                    <Route path="/color">
+                        <ColorPicker/>
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     );
 }

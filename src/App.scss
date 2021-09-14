@@ -8,6 +8,9 @@ h1 {
 h2 {
   font-size: 42px;
 }
+p {
+  font-size: 24px;
+}
 ul {
   font-size: 24px;
   padding: 0;
@@ -59,4 +62,11 @@ a:active {
 .ColorPicker {
   margin-left: 10vh;
   color: $text;
+}
+.ColorPicker-picker {
+  float: left;
+}
+.ColorPicker-output {
+  float: left;
+  margin-left: 100px;
 }

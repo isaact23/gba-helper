@@ -6,6 +6,9 @@ import NavBar from './NavBar.js';
 import MainMenu from './MainMenu.js';
 import ColorPicker from './ColorPicker.js';
 
+/*
+The App component contains the entire website.
+ */
 class App extends React.Component {
     render() {
         return (

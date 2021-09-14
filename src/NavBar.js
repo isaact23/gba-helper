@@ -1,6 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
+/*
+The NavBar is displayed at the top of the screen on all pages.
+ */
 class NavBar extends React.Component {
     render() {
         return (

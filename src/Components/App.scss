@@ -1,7 +1,6 @@
 $text: white;
 $background1: #282c34;
 $background2: #1f2126;
-
 h1 {
   font-size: 52px;
 }
@@ -69,4 +68,9 @@ a:active {
 .ColorPicker-output {
   float: left;
   margin-left: 100px;
+}
+
+.ImageConverter {
+  margin-left: 10vh;
+  color: $text;
 }

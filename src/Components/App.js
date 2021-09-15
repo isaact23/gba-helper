@@ -5,9 +5,10 @@ import './App.scss';
 import NavBar from './Pages/NavBar.js';
 import MainMenu from './Pages/MainMenu.js';
 import ColorPicker from './Pages/ColorPicker.js';
+import ImageConverter from './Pages/ImageConverter.js';
 
-/*
-The App component contains the entire website.
+/**
+ * The App component contains the entire website.
  */
 class App extends React.Component {
     render() {
@@ -21,6 +22,9 @@ class App extends React.Component {
                         </Route>
                         <Route path="/color">
                             <ColorPicker/>
+                        </Route>
+                        <Route path="/image">
+                            <ImageConverter/>
                         </Route>
                     </Switch>
                 </Router>

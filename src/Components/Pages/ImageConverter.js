@@ -10,6 +10,10 @@ class ImageConverter extends React.Component {
         this.state = {
             selectedImage: null
         }
+        // Prep for image conversion
+        this.canvas = document.getElementById("imageConverterCanvas");
+        this.context = this.canvas.getContext("2d");
+
 
         // Bind functions
         this.onFileChange = this.onFileChange.bind(this);
@@ -18,16 +22,27 @@ class ImageConverter extends React.Component {
 
     // Called when a new PNG image is selected.
     onFileChange(event) {
-        if (event.target.files.length > 0) {
-            this.setState({
-                selectedImage: URL.createObjectURL(event.target.files[0])
-            });
-        }
+        // If no file is selected, stop.
+        if (event.target.files.length < 1) { return; }
+
+        // TODO remove this setState
+        this.setState({
+            selectedImage: URL.createObjectURL(event.target.files[0])
+        });
+
+        // Draw image to canvas
+        let image = this.state.selectedImage;
+        this.context.drawImage(image, 0, 0);
     }
 
     // Called when submit is pressed.
     onSubmit(event) {
-        window.alert("File conversion is not supported yet!");
+        let imgData = this.context.getImageData(0, 0,
+            this.state.selectedImage.width, this.state.selectedImage.height);
+
+        console.log(imgData);
+
+        //window.alert("File conversion is not supported yet!");
     }
 
     render() {
@@ -49,6 +64,7 @@ class ImageConverter extends React.Component {
                 <a onClick={this.onSubmit}>
                     <p>Submit</p>
                 </a>
+                <canvas id="imageConverterCanvas" width={512} height={512} />
             </div>
         );
     }

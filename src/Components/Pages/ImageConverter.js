@@ -18,9 +18,11 @@ class ImageConverter extends React.Component {
 
     // Called when a new PNG image is selected.
     onFileChange(event) {
-        this.setState({
-            selectedImage: URL.createObjectURL(event.target.files[0])
-        });
+        if (event.target.files.length > 0) {
+            this.setState({
+                selectedImage: URL.createObjectURL(event.target.files[0])
+            });
+        }
     }
 
     // Called when submit is pressed.

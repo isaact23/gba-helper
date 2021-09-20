@@ -1,6 +1,8 @@
 $text: white;
 $background1: #282c34;
 $background2: #1f2126;
+
+// Text formatting
 h1 {
   font-size: 52px;
 }
@@ -16,6 +18,7 @@ ul {
   list-style-type: none;
 }
 
+// Link formatting
 a {
   text-decoration: underline;
 }
@@ -27,11 +30,28 @@ a:visited {
 }
 a:hover {
   color: #aaaaaa;
+  cursor: pointer;
 }
 a:active {
   color: #777777;
 }
 
+// Div wrapper for pixelart where anti-aliasing should be disabled
+.pixelart img {
+  // Source https://stackoverflow.com/questions/14068103/disable-antialising-when-scaling-images
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated; /* Chrome */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+
+  flex-shrink: 0;
+  min-height: 100%;
+}
+
+// Formatting for the entire application
 .App {
   background-color: $background1;
   position: fixed;
@@ -41,6 +61,7 @@ a:active {
   margin: 0;
   padding: 0;
   text-align: left;
+  overflow-y:auto;
 }
 .App-header {
   background-color: $background2;
@@ -53,6 +74,7 @@ a:active {
   color: $text;
 }
 
+// Page-specific formatting
 .MainMenu {
   margin-left: 10vh;
   color: $text;
@@ -73,4 +95,10 @@ a:active {
 .ImageConverter {
   margin-left: 10vh;
   color: $text;
+}
+.ImageConverter-selectedImage img {
+  margin-top: 20px;
+  width: 400px;
+  max-height: 200px;
+  //outline: red solid 4px;
 }

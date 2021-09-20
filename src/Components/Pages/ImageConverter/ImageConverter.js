@@ -1,4 +1,6 @@
 import React from 'react';
+let getPixels = require('get-pixels');
+let converter = require('./converter.js');
 
 /**
  * This page converts PNG images to multiple formats (tiled / bitmaps) supported by GBA hardware.
@@ -8,16 +10,15 @@ class ImageConverter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedImage: null
+            image: null,
+            mode: "tile"
         }
-        // Prep for image conversion
-        this.canvas = document.getElementById("imageConverterCanvas");
-        this.context = this.canvas.getContext("2d");
-
 
         // Bind functions
         this.onFileChange = this.onFileChange.bind(this);
+        this.onConvertModeChange = this.onConvertModeChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onGetPixels = this.onGetPixels.bind(this);
     }
 
     // Called when a new PNG image is selected.
@@ -25,46 +26,58 @@ class ImageConverter extends React.Component {
         // If no file is selected, stop.
         if (event.target.files.length < 1) { return; }
 
-        // TODO remove this setState
         this.setState({
-            selectedImage: URL.createObjectURL(event.target.files[0])
+            image: URL.createObjectURL(event.target.files[0])
         });
+    }
 
-        // Draw image to canvas
-        let image = this.state.selectedImage;
-        this.context.drawImage(image, 0, 0);
+    // Called when convert mode is changed.
+    onConvertModeChange(event) {
+        this.setState({
+            mode: event.target.value
+        });
     }
 
     // Called when submit is pressed.
     onSubmit(event) {
-        let imgData = this.context.getImageData(0, 0,
-            this.state.selectedImage.width, this.state.selectedImage.height);
+        // If no file is selected, stop.
+        if (this.state.image == null) {
+            window.alert("Please select a file.");
+            return;
+        }
 
-        console.log(imgData);
+        // Generate array of pixels for image.
+        getPixels(this.state.image, this.onGetPixels);
+    }
 
-        //window.alert("File conversion is not supported yet!");
+    // Callback for getPixels
+    onGetPixels(error, pixels) {
+        if (error) {
+            window.alert("Error loading pixels from image!");
+            return
+        }
+        converter.convert(pixels, this.state.mode);
     }
 
     render() {
         return (
             <div className="ImageConverter">
                 <h2>PNG to GBA converter</h2>
-                <input type="file" id="convertImage" accept="image/png" onChange={this.onFileChange} />
+                <input type="file" id="convertImage" accept="image/png, image/jpeg" onChange={this.onFileChange} />
                 <div className="pixelart">
                     <div className="ImageConverter-selectedImage">
-                        <img src={this.state.selectedImage} />
+                        <img src={this.state.image} alt="Selection" />
                     </div>
                 </div>
                 <p>Conversion mode</p>
-                <select id="convertMode">
+                <select id="convertMode" onChange={this.onConvertModeChange}>
                     <option value="tile">Tiles (8x8 squares, 256-color palette)</option>
                     <option value="bitmapPalette">Bitmap with Palette (256 colors)</option>
-                    <option value="bitmapRaw">Bitmap without Palette (65,536 colors)</option>
+                    <option value="bitmapRaw">Bitmap without Palette (32,768 colors)</option>
                 </select>
                 <a onClick={this.onSubmit}>
                     <p>Submit</p>
                 </a>
-                <canvas id="imageConverterCanvas" width={512} height={512} />
             </div>
         );
     }

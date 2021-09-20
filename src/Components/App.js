@@ -2,10 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import './App.scss';
 
-import NavBar from './Pages/NavBar.js';
-import MainMenu from './Pages/MainMenu.js';
-import ColorPicker from './Pages/ColorPicker.js';
-import ImageConverter from './Pages/ImageConverter.js';
+import NavBar from './Pages/NavBar/NavBar.js';
+import MainMenu from './Pages/MainMenu/MainMenu.js';
+import ColorPicker from './Pages/ColorPicker/ColorPicker.js';
+import ImageConverter from './Pages/ImageConverter/ImageConverter.js';
 
 /**
  * The App component contains the entire website.

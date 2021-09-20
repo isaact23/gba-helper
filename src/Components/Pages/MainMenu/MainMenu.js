@@ -9,13 +9,14 @@ class MainMenu extends React.Component {
         return (
             <div className="MainMenu">
                 <h2>Main Menu</h2>
-                <Link to="color"><ul>RGB color picker</ul></Link>
-                <Link to="image"><ul>PNG to GBA converter</ul></Link>
+                <Link to="color"><ul>Color picker</ul></Link>
+                <Link to="image"><ul>Image converter</ul></Link>
+                <ul>Audio converter</ul>
                 <ul>Tilemap Editor</ul>
                 <ul>Useful links</ul>
                 <ul>About</ul>
+                <a href="https://github.com/isaact23/gba-helper" target="_blank" rel="noreferrer"><ul>Github Repo</ul></a>
                 <ul>Donate</ul>
-                <ul>GitHub Repo</ul>
             </div>
         );
     }

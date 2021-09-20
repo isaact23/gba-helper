@@ -25,7 +25,7 @@ class ImageConverter extends React.Component {
 
     // Called when submit is pressed.
     onSubmit(event) {
-        window.alert("You IDIOT.");
+        window.alert("File conversion is not supported yet!");
     }
 
     render() {

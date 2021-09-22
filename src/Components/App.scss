@@ -36,6 +36,11 @@ a:active {
   color: #777777;
 }
 
+button {
+  margin-top: 20px;
+  display: block;
+}
+
 // Div wrapper for pixelart where anti-aliasing should be disabled
 .pixelart img {
   // Source https://stackoverflow.com/questions/14068103/disable-antialising-when-scaling-images
@@ -98,7 +103,5 @@ a:active {
 }
 .ImageConverter-selectedImage img {
   margin-top: 20px;
-  width: 400px;
-  max-height: 200px;
   //outline: red solid 4px;
 }

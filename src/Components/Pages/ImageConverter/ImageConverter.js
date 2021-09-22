@@ -1,6 +1,6 @@
 import React from 'react';
-let getPixels = require('get-pixels');
-let converter = require('./converter.js');
+const converter = require('./converter.js');
+const getPixels = require('get-pixels');
 
 /**
  * This page converts PNG images to multiple formats (tiled / bitmaps) supported by GBA hardware.
@@ -11,6 +11,7 @@ class ImageConverter extends React.Component {
         super(props);
         this.state = {
             image: null,
+            imageName: null,
             mode: "tile"
         }
 
@@ -27,7 +28,8 @@ class ImageConverter extends React.Component {
         if (event.target.files.length < 1) { return; }
 
         this.setState({
-            image: URL.createObjectURL(event.target.files[0])
+            image: URL.createObjectURL(event.target.files[0]),
+            imageName: event.target.files[0].name.replace(/\.[^/.]+$/, "") // remove extension
         });
     }
 
@@ -56,7 +58,7 @@ class ImageConverter extends React.Component {
             window.alert("Error loading pixels from image!");
             return
         }
-        converter.convert(pixels, this.state.mode);
+        converter.convert(pixels, this.state.mode, this.state.imageName);
     }
 
     render() {
@@ -75,9 +77,9 @@ class ImageConverter extends React.Component {
                     <option value="bitmapPalette">Bitmap with Palette (256 colors)</option>
                     <option value="bitmapRaw">Bitmap without Palette (32,768 colors)</option>
                 </select>
-                <a onClick={this.onSubmit}>
+                <button onClick={this.onSubmit}>
                     <p>Submit</p>
-                </a>
+                </button>
             </div>
         );
     }

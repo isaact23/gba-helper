@@ -1,5 +1,7 @@
+import Palette from "./palette";
 let fileSaver = require("file-saver");
 
+// TODO: Clean this code up for real
 /**
  * Given an array of the RGB values of an image and a conversion mode,
  * generate a header file formatted for GBA.
@@ -24,16 +26,43 @@ export function convert(pixels, mode, filename) {
                 text += "\t";
                 for (let x = 0; x < dimensions[0]; x++) {
                     // Convert RGB to GBA-formatted hex
-                    let r = pixels.get(x, y, 0) >> 3;
-                    let g = pixels.get(x, y, 1) >> 3;
-                    let b = pixels.get(x, y, 2) >> 3;
-                    let color = (b + (g * 32) + (r * 1024));
+                    let color = rgbToGba(pixels.get(x, y, 0), pixels.get(x, y, 1), pixels.get(x, y, 2));
                     let hex = "0x" + color.toString(16).padStart(4, "0");
                     text += hex + ", ";
                 }
                 text += "\n";
             }
-            text += "}";
+            text += "}\n";
+
+        } else if (mode === "bitmapPalette") {
+            // Create palette to store colors
+            let palette = new Palette();
+
+            text += "// Conversion mode: Bitmap with Palette (256 colors)\n\n";
+            text += "#include <stdint.h>\n\n"
+            text += "#define " + filename + "_width " + dimensions[0] + "\n";
+            text += "#define " + filename + "_height " + dimensions[1] + "\n\n";
+            text += "const uint8_t " + filename + "_data[] = {\n";
+
+            // Iterate through all pixels, left to right, then top to bottom
+            for (let y = 0; y < dimensions[1]; y++) {
+                text += "\t";
+                for (let x = 0; x < dimensions[0]; x++) {
+                    // Convert RGB to GBA-formatted hex
+                    let color = rgbToGba(pixels.get(x, y, 0), pixels.get(x, y, 1), pixels.get(x, y, 2));
+                    let index = palette.addColor(color);
+                    if (index == null) {
+                        throw new Error("Color palette exceeds 256 colors - try reducing color count and submit again.");
+                    }
+                    let hex = "0x" + index.toString(16).padStart(2, "0");
+                    text += hex + ", ";
+                }
+                text += "\n";
+            }
+            text += "}\n\n";
+
+            // Add palette here
+            text += palette.getText();
         }
 
         // Save text to file
@@ -43,4 +72,20 @@ export function convert(pixels, mode, filename) {
     } catch (e) {
         window.alert("Error during conversion: " + e.message);
     }
+}
+
+/**
+ * Given an RGB color (0-255 for each value), return an
+ * integer from 0 to 32,767 representing GBA-formatted color.
+ */
+function rgbToGba(red, green, blue) {
+    if (red < 0 || red > 255 ||
+        green < 0 || green > 255 ||
+        blue < 0 || blue > 255) {
+        throw new RangeError("RGB values out of range");
+    }
+    let r = red >> 3;
+    let g = green >> 3;
+    let b = blue >> 3;
+    return b + (g * 32) + (r * 1024);
 }

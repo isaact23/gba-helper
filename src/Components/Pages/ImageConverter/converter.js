@@ -1,7 +1,7 @@
 import Palette from "./palette";
 let fileSaver = require("file-saver");
 
-// TODO: Clean this code up for real
+// TODO: Clean this code up for real; add way to convert multiple files at once
 /**
  * Given an array of the RGB values of an image and a conversion mode,
  * generate a header file formatted for GBA.
@@ -19,14 +19,17 @@ export function convert(pixels, mode, filename) {
             text += "#include <stdint.h>\n\n"
             text += "#define " + filename + "_width " + dimensions[0] + "\n";
             text += "#define " + filename + "_height " + dimensions[1] + "\n\n";
-            text += "const uint16_t " + filename + "_data[] = {\n";
+            text += "const uint16_t " + filename + "_data [] = {\n";
 
             // Iterate through all pixels, left to right, then top to bottom
             for (let y = 0; y < dimensions[1]; y++) {
                 text += "\t";
                 for (let x = 0; x < dimensions[0]; x++) {
                     // Convert RGB to GBA-formatted hex
-                    let color = rgbToGba(pixels.get(x, y, 0), pixels.get(x, y, 1), pixels.get(x, y, 2));
+                    let r = pixels.get(x, y, 0);
+                    let g = pixels.get(x, y, 1);
+                    let b = pixels.get(x, y, 2);
+                    let color = rgbToGba(r, g, b);
                     let hex = "0x" + color.toString(16).padStart(4, "0");
                     text += hex + ", ";
                 }
@@ -49,10 +52,16 @@ export function convert(pixels, mode, filename) {
                 text += "\t";
                 for (let x = 0; x < dimensions[0]; x++) {
                     // Convert RGB to GBA-formatted hex
-                    let color = rgbToGba(pixels.get(x, y, 0), pixels.get(x, y, 1), pixels.get(x, y, 2));
+                    let r = pixels.get(x, y, 0);
+                    let g = pixels.get(x, y, 1);
+                    let b = pixels.get(x, y, 2);
+                    let color = rgbToGba(r, g, b);
+                    // Add color to palette
                     let index = palette.addColor(color);
                     if (index == null) {
-                        throw new Error("Color palette exceeds 256 colors - try reducing color count and submit again.");
+                        window.alert("Error during conversion: Color palette exceeds 256 colors - try reducing color" +
+                            "count and submit again.");
+                        return;
                     }
                     let hex = "0x" + index.toString(16).padStart(2, "0");
                     text += hex + ", ";
@@ -63,6 +72,62 @@ export function convert(pixels, mode, filename) {
 
             // Add palette here
             text += palette.getText();
+
+        } else if (mode === "tile") {
+            // Create palette to store colors
+            let palette = new Palette();
+
+            // Determine number of 8x8 tiles across/down
+            let tileCountX = Math.ceil(dimensions[0] / 8);
+            let tileCountY = Math.ceil(dimensions[1] / 8);
+
+            text += "// Conversion mode: Tiles (8x8 squares, 256-color palette)\n\n";
+            text += "#include <stdint.h>\n\n"
+            text += "#define " + filename + "_tileCountX " + tileCountX + "\n";
+            text += "#define " + filename + "_tileCountY " + tileCountY + "\n\n";
+            text += "const uint8_t " + filename + "_data[] = {\n";
+
+            // Iterate through tiles
+            for (let tileY = 0; tileY < tileCountY; tileY++) {
+                for (let tileX = 0; tileX < tileCountX; tileX++) {
+                    // Iterate through pixels within each tile
+                    for (let localY = 0; localY < 8; localY++) {
+                        if (localY % 2 === 0) {
+                            text += "\t";
+                        }
+                        let y = (tileY * 8) + localY;
+                        for (let localX = 0; localX < 8; localX++) {
+                            let x = (tileX * 8) + localX;
+                            // Convert RGB to GBA-formatted hex
+                            let r = pixels.get(x, y, 0);
+                            let g = pixels.get(x, y, 1);
+                            let b = pixels.get(x, y, 2);
+                            let color = rgbToGba(r, g, b);
+                            // Add color to palette
+                            let index = palette.addColor(color);
+                            if (index == null) {
+                                window.alert("Error during conversion: Color palette exceeds 256 colors - try reducing" +
+                                    "color count and submit again.");
+                                return;
+                            }
+                            let hex = "0x" + index.toString(16).padStart(2, "0");
+                            text += hex + ", ";
+                        }
+                        // Add line breaks every 16 entries
+                        if (localY % 2 === 1) {
+                            text += "\n";
+                        }
+                    }
+                }
+            }
+            text += "}\n\n";
+
+            // Add palette here
+            text += palette.getText();
+
+        } else {
+            window.alert("Error during conversion: Mode " + mode.toString + " not found");
+            return;
         }
 
         // Save text to file

@@ -43,7 +43,7 @@ export default class Palette {
     getText() {
         console.log(this.index);
         let text = "const uint16_t palette [] {\n";
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 32; i++) {
             text += "\t";
             for (let j = 0; j < 8; j++) {
                 // Given the index in palette, get the color.

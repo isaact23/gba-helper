@@ -98,20 +98,25 @@ export function convert(pixels, mode, filename) {
                         let y = (tileY * 8) + localY;
                         for (let localX = 0; localX < 8; localX++) {
                             let x = (tileX * 8) + localX;
-                            // Convert RGB to GBA-formatted hex
-                            let r = pixels.get(x, y, 0);
-                            let g = pixels.get(x, y, 1);
-                            let b = pixels.get(x, y, 2);
-                            let color = rgbToGba(r, g, b);
-                            // Add color to palette
-                            let index = palette.addColor(color);
-                            if (index == null) {
-                                window.alert("Error during conversion: Color palette exceeds 256 colors - try reducing" +
-                                    "color count and submit again.");
-                                return;
+                            // If out of bounds, use first color in palette.
+                            if (x >= dimensions[0] || y >= dimensions[1]) {
+                                text += "0x00, ";
+                            } else {
+                                // Convert RGB to GBA-formatted hex
+                                let r = pixels.get(x, y, 0);
+                                let g = pixels.get(x, y, 1);
+                                let b = pixels.get(x, y, 2);
+                                let color = rgbToGba(r, g, b);
+                                // Add color to palette
+                                let index = palette.addColor(color);
+                                if (index == null) {
+                                    window.alert("Error during conversion: Color palette exceeds 256 colors - try reducing" +
+                                        "color count and submit again.");
+                                    return;
+                                }
+                                let hex = "0x" + index.toString(16).padStart(2, "0");
+                                text += hex + ", ";
                             }
-                            let hex = "0x" + index.toString(16).padStart(2, "0");
-                            text += hex + ", ";
                         }
                         // Add line breaks every 16 entries
                         if (localY % 2 === 1) {

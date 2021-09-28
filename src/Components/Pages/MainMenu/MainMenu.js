@@ -9,7 +9,11 @@ class MainMenu extends React.Component {
         return (
             <div className="MainMenu">
                 <h2>Main Menu</h2>
-                <Link to="color"><ul>Color picker</ul></Link>
+                <Link to="color">
+                    <div className="MainMenu-optionBox">
+                        <p>Color picker</p>
+                    </div>
+                </Link>
                 <Link to="image"><ul>Image converter</ul></Link>
                 <ul>Audio converter</ul>
                 <ul>Tilemap Editor</ul>

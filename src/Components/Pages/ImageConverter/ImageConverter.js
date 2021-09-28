@@ -64,7 +64,7 @@ class ImageConverter extends React.Component {
     render() {
         return (
             <div className="ImageConverter">
-                <h2>PNG to GBA converter</h2>
+                <h2>Image to GBA converter</h2>
                 <input type="file" id="convertImage" accept="image/png, image/jpeg" onChange={this.onFileChange} />
                 <div className="pixelart">
                     <div className="ImageConverter-selectedImage">

@@ -11,16 +11,35 @@ class MainMenu extends React.Component {
                 <h2>Main Menu</h2>
                 <Link to="color">
                     <div className="MainMenu-optionBox">
-                        <p>Color picker</p>
+                        <div className="pixelart">
+                            <img src="/img/colorPicker.png" alt="Color Picker"/>
+                        </div>
                     </div>
                 </Link>
-                <Link to="image"><ul>Image converter</ul></Link>
-                <ul>Audio converter</ul>
-                <ul>Tilemap Editor</ul>
-                <ul>Useful links</ul>
-                <ul>About</ul>
-                <a href="https://github.com/isaact23/gba-helper" target="_blank" rel="noreferrer"><ul>Github Repo</ul></a>
-                <ul>Donate</ul>
+                <Link to="image">
+                    <div className="MainMenu-optionBox">
+                        <div className="pixelart">
+                            <img src="/img/imageConverter.png" alt="Image Converter"/>
+                        </div>
+                    </div>
+                </Link>
+                <div className="MainMenu-optionBox">
+                    <p>Audio converter</p>
+                </div>
+                <div className="MainMenu-optionBox">
+                    <p>Tilemap Editor</p>
+                </div>
+                <div className="MainMenu-optionBox">
+                    <p>Useful Links</p>
+                </div>
+                <div className="MainMenu-optionBox">
+                    <p>About</p>
+                </div>
+                <a href="https://github.com/isaact23/gba-helper" target="_blank" rel="noreferrer">
+                    <div className="MainMenu-optionBox">
+                        <p>Github Repo</p>
+                    </div>
+                </a>
             </div>
         );
     }

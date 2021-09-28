@@ -24,7 +24,9 @@ class MainMenu extends React.Component {
                     </div>
                 </Link>
                 <div className="MainMenu-optionBox">
-                    <p>Audio converter</p>
+                    <div className="pixelart">
+                        <img src="/img/audioConverter.png" alt="Audio Converter"/>
+                    </div>
                 </div>
                 <div className="MainMenu-optionBox">
                     <p>Tilemap Editor</p>

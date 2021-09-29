@@ -2,6 +2,9 @@ $text: white;
 $background1: #282c34;
 $background2: #1f2126;
 
+// TODO: Move margin-left 10vh to a common div for entire site
+// TODO: Separate app.scss into different files for each page
+
 // Text formatting
 h1 {
   font-size: 52px;
@@ -47,17 +50,18 @@ button {
   image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
   image-rendering: -moz-crisp-edges;          /* Firefox                        */
   image-rendering: -o-crisp-edges;            /* Opera                          */
-  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  //image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
   image-rendering: pixelated; /* Chrome */
-  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  //image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
   -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 
   flex-shrink: 0;
-  min-height: 100%;
+  width: 100%;
 }
 
 // Formatting for the entire application
 .App {
+  color: $text;
   background-color: $background1;
   position: fixed;
   width: 100%;
@@ -82,12 +86,17 @@ button {
 // Page-specific formatting
 .MainMenu {
   margin-left: 10vh;
-  color: $text;
+}
+.MainMenu-optionBox {
+  width: 400px;
+  height: 225px;
+  float: left;
+  margin-right: 100px;
+  margin-top: 50px;
 }
 
 .ColorPicker {
   margin-left: 10vh;
-  color: $text;
 }
 .ColorPicker-picker {
   float: left;
@@ -99,9 +108,24 @@ button {
 
 .ImageConverter {
   margin-left: 10vh;
-  color: $text;
 }
 .ImageConverter-selectedImage img {
   margin-top: 20px;
   //outline: red solid 4px;
+}
+
+.AudioConverter {
+  margin-left: 10vh;
+}
+
+.TilemapEditor {
+  margin-left: 10vh;
+}
+
+.UsefulLinks {
+  margin-left: 10vh;
+}
+
+.About {
+  margin-left: 10vh;
 }

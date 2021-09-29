@@ -45,7 +45,7 @@ export function convert(pixels, mode, filename) {
             text += "#include <stdint.h>\n\n"
             text += "#define " + filename + "_width " + dimensions[0] + "\n";
             text += "#define " + filename + "_height " + dimensions[1] + "\n\n";
-            text += "const uint8_t " + filename + "_data[] = {\n";
+            text += "const uint8_t " + filename + "_data [] = {\n";
 
             // Iterate through all pixels, left to right, then top to bottom
             for (let y = 0; y < dimensions[1]; y++) {
@@ -85,7 +85,7 @@ export function convert(pixels, mode, filename) {
             text += "#include <stdint.h>\n\n"
             text += "#define " + filename + "_tileCountX " + tileCountX + "\n";
             text += "#define " + filename + "_tileCountY " + tileCountY + "\n\n";
-            text += "const uint8_t " + filename + "_data[] = {\n";
+            text += "const uint8_t " + filename + "_data [] = {\n";
 
             // Iterate through tiles
             for (let tileY = 0; tileY < tileCountY; tileY++) {

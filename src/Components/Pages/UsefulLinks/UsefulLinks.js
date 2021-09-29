@@ -11,6 +11,7 @@ export default class UsefulLinks extends React.Component {
                 <a href="https://github.com/isaact23/gba-helper" target="_blank" rel="noreferrer">
                     <ul>Github Repo</ul>
                 </a>
+                <p>More links coming soon!</p>
             </div>
         );
     }

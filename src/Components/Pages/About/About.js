@@ -5,6 +5,7 @@ export default class About extends React.Component {
         return (
             <div className="About">
                 <h2>About</h2>
+                <p>This page is under construction!</p>
             </div>
         );
     }

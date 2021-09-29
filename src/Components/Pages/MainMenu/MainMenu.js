@@ -8,7 +8,6 @@ class MainMenu extends React.Component {
     render() {
         return (
             <div className="MainMenu">
-                <h2>Main Menu</h2>
                 <Link to="color">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
@@ -23,25 +22,34 @@ class MainMenu extends React.Component {
                         </div>
                     </div>
                 </Link>
-                <div className="MainMenu-optionBox">
-                    <div className="pixelart">
-                        <img src="/img/audioConverter.png" alt="Audio Converter"/>
-                    </div>
-                </div>
-                <div className="MainMenu-optionBox">
-                    <p>Tilemap Editor</p>
-                </div>
-                <div className="MainMenu-optionBox">
-                    <p>Useful Links</p>
-                </div>
-                <div className="MainMenu-optionBox">
-                    <p>About</p>
-                </div>
-                <a href="https://github.com/isaact23/gba-helper" target="_blank" rel="noreferrer">
+                <Link to="audio">
                     <div className="MainMenu-optionBox">
-                        <p>Github Repo</p>
+                        <div className="pixelart">
+                            <img src="/img/audioConverter.png" alt="Audio Converter"/>
+                        </div>
                     </div>
-                </a>
+                </Link>
+                <Link to="tilemap">
+                    <div className="MainMenu-optionBox">
+                        <div className="pixelart">
+                            <img src="/img/tilemapEditor.png" alt="Tilemap Editor"/>
+                        </div>
+                    </div>
+                </Link>
+                <Link to="links">
+                    <div className="MainMenu-optionBox">
+                        <div className="pixelart">
+                            <img src="/img/usefulLinks.png" alt="Useful Links"/>
+                        </div>
+                    </div>
+                </Link>
+                <Link to="about">
+                    <div className="MainMenu-optionBox">
+                        <div className="pixelart">
+                            <img src="/img/about.png" alt="About"/>
+                        </div>
+                    </div>
+                </Link>
             </div>
         );
     }

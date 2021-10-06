@@ -1,6 +1,6 @@
 import React from 'react';
 import "./ImageConverter.scss";
-const converter = require('./converter.js');
+const converter = require('./pixelsToHeader.js');
 const getPixels = require('get-pixels');
 
 /**
@@ -20,7 +20,6 @@ class ImageConverter extends React.Component {
         this.onFileChange = this.onFileChange.bind(this);
         this.onConvertModeChange = this.onConvertModeChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        this.onGetPixels = this.onGetPixels.bind(this);
     }
 
     // Called when a new PNG image is selected.
@@ -50,16 +49,14 @@ class ImageConverter extends React.Component {
         }
 
         // Generate array of pixels for image.
-        getPixels(this.state.image, this.onGetPixels);
-    }
-
-    // Callback for getPixels
-    onGetPixels(error, pixels) {
-        if (error) {
-            window.alert("Error loading pixels from image!");
-            return
-        }
-        converter.convert(pixels, this.state.mode, this.state.imageName);
+        let state = this.state; // Pass state to callback
+        getPixels(this.state.image, function(error, pixels) {
+            if (error) {
+                window.alert("Error loading pixels from image!");
+                return
+            }
+            converter.convert(pixels, state.mode, state.imageName);
+        });
     }
 
     render() {

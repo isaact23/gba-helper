@@ -1,9 +1,4 @@
-$text: white;
-$background1: #282c34;
-$background2: #1f2126;
-
-// TODO: Move margin-left 10vh to a common div for entire site
-// TODO: Separate app.scss into different files for each page
+@import 'colors';
 
 // Text formatting
 h1 {
@@ -72,60 +67,6 @@ button {
   text-align: left;
   overflow-y:auto;
 }
-.App-header {
-  background-color: $background2;
-  height: 150px;
-  display: flex;
-  justify-content: left;
-}
-.App-header-title {
-  margin-left: 10vh;
-  color: $text;
-}
-
-// Page-specific formatting
-.MainMenu {
-  margin-left: 10vh;
-}
-.MainMenu-optionBox {
-  width: 350px;
-  height: 225px;
-  float: left;
-  margin-right: 100px;
-  margin-top: 50px;
-}
-
-.ColorPicker {
-  margin-left: 10vh;
-}
-.ColorPicker-picker {
-  float: left;
-}
-.ColorPicker-output {
-  float: left;
-  margin-left: 100px;
-}
-
-.ImageConverter {
-  margin-left: 10vh;
-}
-.ImageConverter-selectedImage img {
-  margin-top: 20px;
-  //outline: red solid 4px;
-}
-
-.AudioConverter {
-  margin-left: 10vh;
-}
-
-.TilemapEditor {
-  margin-left: 10vh;
-}
-
-.UsefulLinks {
-  margin-left: 10vh;
-}
-
-.About {
+.App-page {
   margin-left: 10vh;
 }

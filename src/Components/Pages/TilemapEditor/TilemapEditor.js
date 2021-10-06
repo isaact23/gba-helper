@@ -1,4 +1,5 @@
 import React from "react";
+import "./TilemapEditor.scss";
 
 export default class TilemapEditor extends React.Component {
     render() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import "./ImageConverter.scss";
 const converter = require('./converter.js');
 const getPixels = require('get-pixels');
 

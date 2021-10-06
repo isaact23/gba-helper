@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import "./NavBar.scss";
 
 /*
 The NavBar is displayed at the top of the screen on all pages.

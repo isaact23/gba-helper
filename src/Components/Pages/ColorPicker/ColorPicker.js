@@ -1,5 +1,6 @@
 import React from 'react';
-import { SketchPicker } from 'react-color'
+import { SketchPicker } from 'react-color';
+import "./ColorPicker.scss";
 
 /**
  * ColorPicker is a page allowing the user to choose colors and convert to GBA format (15 bits).

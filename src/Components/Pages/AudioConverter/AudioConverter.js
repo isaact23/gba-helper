@@ -1,4 +1,5 @@
 import React from "react";
+import "./AudioConverter.scss";
 
 export default class AudioConverter extends React.Component {
     render() {

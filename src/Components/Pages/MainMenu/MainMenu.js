@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import "./MainMenu.scss";
 
 /**
  * Main menu is the first page the user sees. It contains links to every other part of the website.
@@ -18,7 +19,7 @@ class MainMenu extends React.Component {
                 <Link to="image">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/imageConverter.png" alt="Image Converter"/>
+                            <img src="/img/imageConverter.png" alt="PNG Converter"/>
                         </div>
                     </div>
                 </Link>

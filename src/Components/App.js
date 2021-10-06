@@ -20,29 +20,31 @@ class App extends React.Component {
             <div className="App">
                 <Router>
                     <NavBar/>
-                    <Switch>
-                        <Route exact path="/">
-                            <MainMenu/>
-                        </Route>
-                        <Route path="/color">
-                            <ColorPicker/>
-                        </Route>
-                        <Route path="/image">
-                            <ImageConverter/>
-                        </Route>
-                        <Route path="/audio">
-                            <AudioConverter/>
-                        </Route>
-                        <Route path="/tilemap">
-                            <TilemapEditor/>
-                        </Route>
-                        <Route path="/links">
-                            <UsefulLinks/>
-                        </Route>
-                        <Route path="/about">
-                            <About/>
-                        </Route>
-                    </Switch>
+                    <div className="App-page">
+                        <Switch>
+                            <Route exact path="/">
+                                <MainMenu/>
+                            </Route>
+                            <Route path="/color">
+                                <ColorPicker/>
+                            </Route>
+                            <Route path="/image">
+                                <ImageConverter/>
+                            </Route>
+                            <Route path="/audio">
+                                <AudioConverter/>
+                            </Route>
+                            <Route path="/tilemap">
+                                <TilemapEditor/>
+                            </Route>
+                            <Route path="/links">
+                                <UsefulLinks/>
+                            </Route>
+                            <Route path="/about">
+                                <About/>
+                            </Route>
+                        </Switch>
+                    </div>
                 </Router>
             </div>
         );

@@ -42,7 +42,7 @@ export default class Palette {
      */
     getText() {
         console.log(this.index);
-        let text = "const uint16_t palette [] {\n";
+        let text = "const uint16_t palette [] = {\n";
         for (let i = 0; i < 32; i++) {
             text += "\t";
             for (let j = 0; j < 8; j++) {
@@ -56,7 +56,7 @@ export default class Palette {
             }
             text += "\n";
         }
-        text += "}\n";
+        text += "};\n";
         return text;
     }
 }

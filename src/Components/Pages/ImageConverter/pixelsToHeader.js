@@ -35,7 +35,7 @@ export function convert(pixels, mode, filename) {
                 }
                 text += "\n";
             }
-            text += "}\n";
+            text += "};\n";
 
         } else if (mode === "bitmapPalette") {
             // Create palette to store colors
@@ -68,7 +68,7 @@ export function convert(pixels, mode, filename) {
                 }
                 text += "\n";
             }
-            text += "}\n\n";
+            text += "};\n\n";
 
             // Add palette here
             text += palette.getText();
@@ -125,7 +125,7 @@ export function convert(pixels, mode, filename) {
                     }
                 }
             }
-            text += "}\n\n";
+            text += "};\n\n";
 
             // Add palette here
             text += palette.getText();
@@ -157,5 +157,5 @@ function rgbToGba(red, green, blue) {
     let r = red >> 3;
     let g = green >> 3;
     let b = blue >> 3;
-    return b + (g * 32) + (r * 1024);
+    return r + (g * 32) + (b * 1024);
 }

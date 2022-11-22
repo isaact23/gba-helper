@@ -3,8 +3,8 @@
  */
 export default class Palette {
     constructor() {
-        this.palette = {"7c1f": 0}; // Maps color number (GBA format) to palette index (0 thru 255)
-        this.index = {0: "7c1f"}; // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
+        this.palette = {31775: 0}; // Maps color number (GBA format) to palette index (0 thru 255)
+        this.index = {0: 31775}; // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
         this.colorCount = 1;
     }
 

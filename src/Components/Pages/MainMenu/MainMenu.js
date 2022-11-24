@@ -9,45 +9,45 @@ class MainMenu extends React.Component {
     render() {
         return (
             <div className="MainMenu">
-                <Link to="color">
+                <Link to="/gba-helper/color">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/colorPicker.png" alt="Color Picker"/>
+                            <img src="/gba-helper/img/colorPicker.png" alt="Color Picker"/>
                         </div>
                     </div>
                 </Link>
-                <Link to="image">
+                <Link to="/gba-helper/image">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/imageConverter.png" alt="PNG Converter"/>
+                            <img src="/gba-helper/img/imageConverter.png" alt="PNG Converter"/>
                         </div>
                     </div>
                 </Link>
-                <Link to="audio">
+                <Link to="/gba-helper/audio">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/audioConverter.png" alt="Audio Converter"/>
+                            <img src="/gba-helper/img/audioConverter.png" alt="Audio Converter"/>
                         </div>
                     </div>
                 </Link>
-                <Link to="tilemap">
+                <Link to="/gba-helper/tilemap">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/tilemapEditor.png" alt="Tilemap Editor"/>
+                            <img src="/gba-helper/img/tilemapEditor.png" alt="Tilemap Editor"/>
                         </div>
                     </div>
                 </Link>
-                <Link to="links">
+                <Link to="/gba-helper/links">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/usefulLinks.png" alt="Useful Links"/>
+                            <img src="/gba-helper/img/usefulLinks.png" alt="Useful Links"/>
                         </div>
                     </div>
                 </Link>
-                <Link to="about">
+                <Link to="/gba-helper/about">
                     <div className="MainMenu-optionBox">
                         <div className="pixelart">
-                            <img src="/img/about.png" alt="About"/>
+                            <img src="/gba-helper/img/about.png" alt="About"/>
                         </div>
                     </div>
                 </Link>

@@ -22,25 +22,25 @@ class App extends React.Component {
                     <NavBar/>
                     <div className="App-page">
                         <Switch>
-                            <Route exact path="/">
+                            <Route exact path="/gba-helper">
                                 <MainMenu/>
                             </Route>
-                            <Route path="/color">
+                            <Route path="/gba-helper/color">
                                 <ColorPicker/>
                             </Route>
-                            <Route path="/image">
+                            <Route path="/gba-helper/image">
                                 <ImageConverter/>
                             </Route>
-                            <Route path="/audio">
+                            <Route path="/gba-helper/audio">
                                 <AudioConverter/>
                             </Route>
-                            <Route path="/tilemap">
+                            <Route path="/gba-helper/tilemap">
                                 <TilemapEditor/>
                             </Route>
-                            <Route path="/links">
+                            <Route path="/gba-helper/links">
                                 <UsefulLinks/>
                             </Route>
-                            <Route path="/about">
+                            <Route path="/gba-helper/about">
                                 <About/>
                             </Route>
                         </Switch>

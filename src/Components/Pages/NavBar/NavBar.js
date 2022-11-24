@@ -10,7 +10,7 @@ class NavBar extends React.Component {
         return (
             <header className="App-header">
                 <div className="App-header-title">
-                    <Link to="/"><h1>GBA Helper</h1></Link>
+                    <Link to="/gba-helper"><h1>GBA Helper</h1></Link>
                 </div>
             </header>
         );

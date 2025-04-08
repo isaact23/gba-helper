@@ -4,12 +4,15 @@
 h1 {
   font-size: 52px;
 }
+
 h2 {
   font-size: 42px;
 }
+
 p {
   font-size: 24px;
 }
+
 ul {
   font-size: 24px;
   padding: 0;
@@ -20,16 +23,20 @@ ul {
 a {
   text-decoration: underline;
 }
+
 a:link {
   color: $text;
 }
+
 a:visited {
   color: $text;
 }
+
 a:hover {
   color: #aaaaaa;
   cursor: pointer;
 }
+
 a:active {
   color: #777777;
 }
@@ -39,19 +46,8 @@ button {
   display: block;
 }
 
-// Div wrapper for pixelart where anti-aliasing should be disabled
 .pixelart img {
-  // Source https://stackoverflow.com/questions/14068103/disable-antialising-when-scaling-images
-  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-  image-rendering: -moz-crisp-edges;          /* Firefox                        */
-  image-rendering: -o-crisp-edges;            /* Opera                          */
-  //image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-  image-rendering: pixelated; /* Chrome */
-  //image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
-
-  flex-shrink: 0;
-  width: 100%;
+  image-rendering: pixelated;
 }
 
 // Formatting for the entire application
@@ -65,8 +61,9 @@ button {
   margin: 0;
   padding: 0;
   text-align: left;
-  overflow-y:auto;
+  overflow-y: auto;
 }
+
 .App-page {
   margin-left: 10vh;
 }

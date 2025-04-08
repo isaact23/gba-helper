@@ -15,40 +15,40 @@ import About from './Pages/About/About.js';
  * The App component contains the entire website.
  */
 class App extends React.Component {
-    render() {
-        return (
-            <div className="App">
-                <Router>
-                    <NavBar/>
-                    <div className="App-page">
-                        <Switch>
-                            <Route exact path="/gba-helper">
-                                <MainMenu/>
-                            </Route>
-                            <Route path="/gba-helper/color">
-                                <ColorPicker/>
-                            </Route>
-                            <Route path="/gba-helper/image">
-                                <ImageConverter/>
-                            </Route>
-                            <Route path="/gba-helper/audio">
-                                <AudioConverter/>
-                            </Route>
-                            <Route path="/gba-helper/tilemap">
-                                <TilemapEditor/>
-                            </Route>
-                            <Route path="/gba-helper/links">
-                                <UsefulLinks/>
-                            </Route>
-                            <Route path="/gba-helper/about">
-                                <About/>
-                            </Route>
-                        </Switch>
-                    </div>
-                </Router>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <NavBar/>
+          <div className="App-page">
+            <Switch>
+              <Route exact path="/gba-helper">
+                <MainMenu/>
+              </Route>
+              <Route path="/gba-helper/color">
+                <ColorPicker/>
+              </Route>
+              <Route path="/gba-helper/image">
+                <ImageConverter/>
+              </Route>
+              <Route path="/gba-helper/audio">
+                <AudioConverter/>
+              </Route>
+              <Route path="/gba-helper/tilemap">
+                <TilemapEditor/>
+              </Route>
+              <Route path="/gba-helper/links">
+                <UsefulLinks/>
+              </Route>
+              <Route path="/gba-helper/about">
+                <About/>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

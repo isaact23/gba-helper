@@ -44,8 +44,8 @@ export default class Palette {
   /**
    * Convert this palette to text to be added to a header file.
    */
-  getText() {
-    let text = "const uint16_t palette [] = {\n";
+  getText(filename: string) {
+    let text = "const uint16_t img_" + filename + "_palette[] = {\n";
     for (let i = 0; i < 32; i++) {
       text += "\t";
       for (let j = 0; j < 8; j++) {

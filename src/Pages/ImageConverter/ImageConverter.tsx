@@ -22,7 +22,7 @@ function ImageConverter() {
     const url = URL.createObjectURL(file);
 
     setImage(url);
-    setImageName(file.name.replace(/\.[^/.]+$/, "")); // remove extension
+    setImageName(file.name);
   }
 
   // Called when submit is pressed.

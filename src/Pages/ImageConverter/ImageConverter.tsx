@@ -44,21 +44,35 @@ function ImageConverter() {
   return (
     <div className="ImageConverter">
       <h2>Image to GBA converter</h2>
+      <p>Select image</p>
       <input type="file" id="convertImage" accept="image/png, image/jpeg" onChange={onFileChange}/>
-      <div className="pixelart">
-        <div className="ImageConverter-selectedImage">
-          <img src={image} alt="Selection"/>
+      
+      {image.length > 0 ? (
+        <div className="pixelart">
+          <div className="ImageConverter-selectedImage">
+            <img src={image} alt="Selection"/>
+          </div>
         </div>
-      </div>
+      ) : null}
+      
       <p>Conversion mode</p>
-      <select id="convertMode" onChange={event => setMode(event.target.value)}>
-        <option value="tile">Tiles (8x8 squares, 256-color palette)</option>
-        <option value="bitmapPalette">Bitmap with Palette (256 colors)</option>
-        <option value="bitmapRaw">Bitmap without Palette (32,768 colors)</option>
-      </select>
-      <button onClick={onSubmit}>
-        <p>Submit</p>
-      </button>
+      <div>
+        <input className="w3-radio" type="radio" name="convertMode" value="tiles" onChange={mode => setMode(mode.target.value)} />
+        <label className="w3-float-left">Tiles (8x8 squares, 256-color palette)</label>
+      </div>
+      <div>
+        <input className="w3-radio" type="radio" name="convertMode" value="bitmap256" onChange={mode => setMode(mode.target.value)} />
+        <label>Bitmap with Palette (256 colors)</label>
+      </div>
+      <div>
+        <input className="w3-radio" type="radio" name="convertMode" value="bitmap32768" onChange={mode => setMode(mode.target.value)} />
+        <label>Bitmap without Palette (32,768 colors)</label>
+      </div>
+      <div className="vbox">
+        <button onClick={onSubmit} className="w3-button w3-green" disabled={image.length == 0}>
+          <p>Convert</p>
+        </button>
+      </div>
     </div>
   );
 }

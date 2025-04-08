@@ -1,0 +1,11 @@
+
+.MainMenu {
+}
+
+.MainMenu-optionBox {
+  width: 350px;
+  height: 225px;
+  float: left;
+  margin-right: 40px;
+  margin-top: 20px;
+}

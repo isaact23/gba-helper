@@ -2,10 +2,14 @@
  * Store up to 256 unique GBA colors.
  */
 export default class Palette {
+  palette: Map<number, number>
+  index: Map<number, number>
+  colorCount: number
+
   constructor() {
-    this.palette = {31775: 0}; // Maps color number (GBA format) to palette index (0 thru 255)
-    this.index = {0: 31775}; // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
-    this.colorCount = 1;
+    this.palette = new Map<number, number>; // Maps color number (GBA format) to palette index (0 thru 255)
+    this.index = new Map<number, number>; // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
+    this.colorCount = 0;
   }
 
   /**
@@ -13,17 +17,17 @@ export default class Palette {
    * color to the palette if necessary and return its
    * index in hexadecimal. If full, return null.
    */
-  addColor(color) {
+  addColor(color: number) {
     // Find color in palette
-    let index = this.palette[color];
+    let index = this.palette.get(color);
 
     // If color is not in palette,
-    if (index == null) {
+    if (index === undefined) {
       // If there is room for another color,
       if (this.colorCount < 256) {
         // Add color and return index.
-        this.palette[color] = this.colorCount;
-        this.index[this.colorCount] = color;
+        this.palette.set(color, this.colorCount);
+        this.index.set(this.colorCount, color);
         this.colorCount++;
         return (this.colorCount - 1);
       } else {
@@ -47,8 +51,8 @@ export default class Palette {
       text += "\t";
       for (let j = 0; j < 8; j++) {
         // Given the index in palette, get the color.
-        let color = this.index[j + (i * 8)];
-        if (color == null) {
+        let color = this.index.get(j + (i * 8));
+        if (color === undefined) {
           color = 0;
         }
         let hex = "0x" + color.toString(16).padStart(4, "0");

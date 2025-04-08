@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import "./ImageConverter.css";
-import {convert} from "./pixelsToHeader.js";
+import {convert} from "./pixelsToHeader";
 import getPixels from "get-pixels";
 
 /**

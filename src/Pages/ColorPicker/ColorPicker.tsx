@@ -46,7 +46,7 @@ function ColorPicker() {
           width={"400"}
           disableAlpha={true}
           color={{r: red, g: green, b: blue}}
-          onChangeComplete={handleColorChange}
+          onChange={handleColorChange}
         />
       </div>
       <div className="ColorPicker-output">

@@ -139,8 +139,8 @@ export function convert(pixels, mode, filename) {
     let blob = new Blob([text], {type: "text/h;charset=utf-8"});
     fileSaver.saveAs(blob, filename + ".h");
 
-  } catch (e) {
-    window.alert("Error during conversion: " + e.message);
+  } catch {
+    window.alert("Unknown error during conversation");
   }
 }
 
@@ -148,7 +148,7 @@ export function convert(pixels, mode, filename) {
  * Given an RGB color (0-255 for each value), return an
  * integer from 0 to 32,767 representing GBA-formatted color.
  */
-function rgbToGba(red, green, blue) {
+function rgbToGba(red: number, green: number, blue: number) {
   if (red < 0 || red > 255 ||
     green < 0 || green > 255 ||
     blue < 0 || blue > 255) {

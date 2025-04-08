@@ -1,8 +1,6 @@
 import {useState} from 'react';
 import "./ImageConverter.css";
 import {convert} from "./pixelsToHeader.ts";
-import getPixels from "get-pixels";
-
 /**
  * This page converts PNG images to multiple formats (tiled / bitmaps) supported by GBA hardware.
  */
@@ -14,37 +12,28 @@ function ImageConverter() {
 
   // Called when a new PNG image is selected.
   const onFileChange = (event) => {
-    // If no file is selected, stop.
     if (event.target.files.length < 1) {
+      setImage("");
+      setImageName("");
       return;
     }
 
-    setImage(event.target.files[0]);
-    setImageName(event.target.files[0].name.replace(/\.[^/.]+$/, "")); // remove extension
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+
+    setImage(url);
+    setImageName(file.name.replace(/\.[^/.]+$/, "")); // remove extension
   }
 
   // Called when submit is pressed.
-  const onSubmit = () => {
+  const onSubmit = async () => {
     // If no file is selected, stop.
-    if (image == null) {
+    if (image.length == 0) {
       window.alert("Please select a file.");
       return;
     }
 
-    console.log("Submitting");
-    console.log(image);
-    console.log(getPixels);
-
-    // Generate array of pixels for image.
-    getPixels(image, function (error, pixels) {
-      console.log("Got it!");
-
-      if (error) {
-        window.alert("Error loading pixels from image!");
-        return
-      }
-      convert(pixels, mode, imageName);
-    });
+    convert(image, mode, imageName);
   }
 
   return (

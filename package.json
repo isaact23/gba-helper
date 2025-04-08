@@ -1,5 +1,5 @@
 {
-  "name": "gba-helper-refactor",
+  "name": "gba-helper",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "file-saver": "^2.0.5",
-    "get-pixels": "^3.3.3",
+    "image-pixels": "^2.2.2",
+    "process": "^0.11.10",
     "react": "^19.0.0",
     "react-color": "^2.19.3",
     "react-dom": "^19.0.0",

@@ -45,7 +45,6 @@ export default class Palette {
    * Convert this palette to text to be added to a header file.
    */
   getText() {
-    console.log(this.index);
     let text = "const uint16_t palette [] = {\n";
     for (let i = 0; i < 32; i++) {
       text += "\t";

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import "./ImageConverter.css";
-import {convert} from "./pixelsToHeader";
+import {convert} from "./pixelsToHeader.ts";
 import getPixels from "get-pixels";
 
 /**
@@ -31,8 +31,14 @@ function ImageConverter() {
       return;
     }
 
+    console.log("Submitting");
+    console.log(image);
+    console.log(getPixels);
+
     // Generate array of pixels for image.
     getPixels(image, function (error, pixels) {
+      console.log("Got it!");
+
       if (error) {
         window.alert("Error loading pixels from image!");
         return

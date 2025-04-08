@@ -1,5 +1,5 @@
-import Palette from "./palette";
-import {fileSaver} from "file-saver";
+import Palette from "./palette.ts";
+import fileSaver from "file-saver";
 
 // TODO: Clean this code up for real; add way to convert multiple files at once
 /**

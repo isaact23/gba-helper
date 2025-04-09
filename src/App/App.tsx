@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from "react-router";
+import {HashRouter, Route, Routes} from "react-router";
 import './App.css';
 
 import NavBar from '../Pages/NavBar';
@@ -18,7 +18,7 @@ function App() {
     <div>
       <NavBar/>
       <div className="App w3-container">
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route index element={<MainMenu />} />
             <Route path="color" element={<ColorPicker />} />
@@ -28,7 +28,7 @@ function App() {
             <Route path="links" element={<UsefulLinks />} />
             <Route path="about" element={<About />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </div>
   );

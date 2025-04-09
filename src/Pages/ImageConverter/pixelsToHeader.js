@@ -1,4 +1,4 @@
-import Palette from "./palette.ts";
+import Palette from "./palette.js";
 import fileSaver from "file-saver";
 import getPixels from "image-pixels";
 
@@ -8,9 +8,9 @@ import getPixels from "image-pixels";
  * Given an array of the RGB values of an image and a Representation,
  * generate a header file formatted for GBA.
  */
-export async function convert(image: string, mode: string, filenameExt: string) {
+export async function convert(image, mode, filenameExt) {
   const {data, width, height} = await getPixels(image);
-  const getPixel = (x: number, y: number, c: number) => {
+  const getPixel = (x, y, c) => {
     return data[(y * 8) + (x * 4) + c];
   }
 
@@ -182,7 +182,7 @@ export async function convert(image: string, mode: string, filenameExt: string) 
  * Given an RGB color (0-255 for each value), return an
  * integer from 0 to 32,767 representing GBA-formatted color.
  */
-function rgbToGba(red: number, green: number, blue: number) {
+function rgbToGba(red, green, blue) {
   if (red < 0 || red > 255 ||
     green < 0 || green > 255 ||
     blue < 0 || blue > 255) {

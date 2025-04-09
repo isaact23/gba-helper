@@ -1,4 +1,4 @@
-import {ColorResult, SketchPicker} from 'react-color';
+import {SketchPicker} from 'react-color';
 import "./ColorPicker.css";
 import {useState, useMemo} from "react";
 
@@ -14,7 +14,7 @@ function ColorPicker() {
   const [blue, setBlue] = useState(220);
 
   // Convert a single number to binary (0 to 31 range)
-  const numToBin = (num: number)=> {
+  const numToBin = (num) => {
     return ((num >> 4) % 2).toString() +
       ((num >> 3) % 2).toString() +
       ((num >> 2) % 2).toString() +
@@ -32,7 +32,7 @@ function ColorPicker() {
 
   const bin = useMemo(() => getBin(), [red, green, blue]);
 
-  const handleColorChange = (color: ColorResult) => {
+  const handleColorChange = (color) => {
     setRed(color.rgb.r);
     setGreen(color.rgb.g);
     setBlue(color.rgb.b);

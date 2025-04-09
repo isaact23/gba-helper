@@ -2,13 +2,10 @@
  * Store up to 256 unique GBA colors.
  */
 export default class Palette {
-  palette: Map<number, number>
-  index: Map<number, number>
-  colorCount: number
 
   constructor() {
-    this.palette = new Map<number, number>; // Maps color number (GBA format) to palette index (0 thru 255)
-    this.index = new Map<number, number>; // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
+    this.palette = new Map(); // Maps color number (GBA format) to palette index (0 thru 255)
+    this.index = new Map(); // Maps palette indices (0 thru 255) to color number (GBA format) (reverse of previous dictionary)
     this.colorCount = 0;
   }
 
@@ -17,7 +14,7 @@ export default class Palette {
    * color to the palette if necessary and return its
    * index in hexadecimal. If full, return null.
    */
-  addColor(color: number) {
+  addColor(color) {
     // Find color in palette
     let index = this.palette.get(color);
 
@@ -44,7 +41,7 @@ export default class Palette {
   /**
    * Convert this palette to text to be added to a header file.
    */
-  getText(filename: string) {
+  getText(filename) {
     let text = "const uint16_t img_" + filename + "_palette[] = {\n";
     for (let i = 0; i < 32; i++) {
       text += "\t";

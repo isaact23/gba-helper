@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import "./ImageConverter.css";
-import {convert} from "./pixelsToHeader.ts";
+import {convert} from "./pixelsToHeader.js";
 /**
  * This page converts PNG images to multiple formats (tiled / bitmaps) supported by GBA hardware.
  */

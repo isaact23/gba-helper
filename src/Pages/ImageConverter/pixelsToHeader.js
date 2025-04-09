@@ -120,9 +120,12 @@ export async function convert(image, mode, filenameExt) {
       c_text += "const uint8_t img_" + filename + "_data[] = {\n";
 
       // Iterate through tiles
+      let tileNo = 0;
       for (let tileY = 0; tileY < tileCountY; tileY++) {
         for (let tileX = 0; tileX < tileCountX; tileX++) {
           // Iterate through pixels within each tile
+          c_text += "\n  // Tile " + tileNo.toString() + "\n";
+          tileNo++;
           for (let localY = 0; localY < 8; localY++) {
             if (localY % 2 === 0) {
               c_text += "\t";
@@ -173,8 +176,8 @@ export async function convert(image, mode, filenameExt) {
     fileSaver.saveAs(c_blob, filename + ".c");
     fileSaver.saveAs(h_blob, filename + ".h");
 
-  } catch {
-    window.alert("Unknown error during conversation");
+  } catch (e) {
+    window.alert("Unknown error during conversation: " + e);
   }
 }
 

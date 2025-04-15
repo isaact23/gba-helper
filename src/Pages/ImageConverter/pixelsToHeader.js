@@ -2,16 +2,20 @@ import Palette from "./palette.js";
 import fileSaver from "file-saver";
 import getPixels from "image-pixels";
 
-
 // TODO: Clean this code up for real; add way to convert multiple files at once
 /**
  * Given an array of the RGB values of an image and a Representation,
  * generate a header file formatted for GBA.
  */
-export async function convert(image, mode, filenameExt) {
+export async function convert(image, mode, filenameExt, transparentColor) {
+
   const {data, width, height} = await getPixels(image);
   const getPixel = (x, y, c) => {
-    return data[(y * 8) + (x * 4) + c];
+    return data[(y * width * 4) + (x * 4) + c];
+  };
+
+  for (let i = 0; i < 50; i++) {
+    console.log(getPixel(i, 0, 0), getPixel(i, 0, 1), getPixel(i, 0, 2));
   }
 
   const filename = filenameExt.replace(/\.[^/.]+$/, "")
@@ -102,6 +106,8 @@ export async function convert(image, mode, filenameExt) {
     } else if (mode === "tiles") {
       // Create palette to store colors
       let palette = new Palette();
+      let tc = transparentColor;
+      palette.addColor(rgbToGba(tc.r, tc.g, tc.b));
 
       // Determine number of 8x8 tiles across/down
       let tileCountX = Math.ceil(width / 8);
@@ -142,10 +148,11 @@ export async function convert(image, mode, filenameExt) {
                 let g = getPixel(x, y, 1);
                 let b = getPixel(x, y, 2);
                 let color = rgbToGba(r, g, b);
+
                 // Add color to palette
                 let index = palette.addColor(color);
                 if (index == null) {
-                  window.alert("Error during conversion: Color palette exceeds 256 colors - try reducing" +
+                  window.alert("Error during conversion: Color palette exceeds 255 colors - try reducing" +
                     "color count and submit again.");
                   return;
                 }

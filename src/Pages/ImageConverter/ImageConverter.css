@@ -1,8 +1,17 @@
 
-.ImageConverter {
-}
 
 .ImageConverter-selectedImage img {
   margin-top: 40px;
   width: 200px;
+}
+
+.colorDisplay {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.shortInput {
+  width: 100px;
+  margin-right: 20px;
 }
